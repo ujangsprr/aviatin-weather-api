@@ -1,7 +1,6 @@
 # SkyLink Aviation Weather API
 
-Panduan integrasi untuk developer yang ingin mengambil data cuaca penerbangan
-METAR dan TAF dari SkyLink Direct API.
+SkyLink Direct API menyediakan data cuaca penerbangan METAR dan TAF.
 
 > API ini menyediakan data cuaca untuk stasiun/bandara yang memiliki laporan
 > METAR atau TAF. Tidak semua bandara menerbitkan kedua jenis laporan.
