@@ -1,274 +1,398 @@
-# Aviation Weather API — AIRMETs, SIGMETs, PIREPs & Winds Aloft
+# SkyLink Aviation Weather API
 
-[![RapidAPI](https://img.shields.io/badge/RapidAPI-SkyLink%20API-blue)](https://rapidapi.com/skylink-api-skylink-api-default/api/skylink-api)
-[![Free Tier](https://img.shields.io/badge/Free%20Tier-1%2C000%20req%2Fmo-green)](https://rapidapi.com/skylink-api-skylink-api-default/api/skylink-api)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-Node.js-yellow)](https://nodejs.org/)
+Panduan integrasi untuk developer yang ingin mengambil data cuaca penerbangan
+METAR dan TAF dari SkyLink Direct API.
 
-> Beyond METAR: get real-time hazardous weather advisories and pilot reports. AIRMETs, SIGMETs, Convective SIGMETs, PIREPs, and Winds Aloft — all in one clean JSON API. Free tier available.
+> API ini menyediakan data cuaca untuk stasiun/bandara yang memiliki laporan
+> METAR atau TAF. Tidak semua bandara menerbitkan kedua jenis laporan.
 
-The **SkyLink Advanced Aviation Weather API** covers the weather data that matters most for flight planning: where the turbulence and icing are right now (PIREPs), which airspace is hazardous (AIRMET/SIGMET), and what the winds and temperatures look like at cruise altitude (Winds Aloft).
+## Daftar isi
 
----
+- [Persiapan](#persiapan)
+- [Autentikasi dan batas request](#autentikasi-dan-batas-request)
+- [Endpoint METAR](#endpoint-metar)
+- [Endpoint TAF](#endpoint-taf)
+- [Menemukan stasiun cuaca Indonesia](#menemukan-stasiun-cuaca-indonesia)
+- [Menjalankan contoh dan menyimpan JSON](#menjalankan-contoh-dan-menyimpan-json)
+- [Format file hasil batch](#format-file-hasil-batch)
+- [Error dan penanganannya](#error-dan-penanganannya)
 
-## Endpoints Covered
+## Persiapan
 
-| Endpoint | Data | Coverage |
-|---|---|---|
-| `/v3/weather/pireps` | Pilot-reported turbulence, icing, sky conditions | USA (FAA) |
-| `/v3/weather/airsigmet` | AIRMET and SIGMET hazardous weather advisories | Global |
-| `/v3/weather/winds-aloft` | Winds and temperatures at 3,000–45,000 ft | USA (FAA FD) |
-
----
-
-## Features
-
-### PIREPs (Pilot Reports)
-- **Real pilot-reported turbulence** — type (light/moderate/severe/extreme), altitude
-- **Icing reports** — type (rime/clear/mixed), intensity, altitude range
-- **Sky condition** — cloud bases and tops as observed by pilots in flight
-- **Temperature and wind** at altitude
-- **Both UA (routine) and UUA (urgent) PIREPs**
-- Search within a **geographic bounding box** and **time window** (1–24 hours)
-
-### AIRMETs & SIGMETs
-- **AIRMETs** — advisories for IFR conditions, mountain obscuration, moderate turbulence, moderate icing, low-level wind shear
-- **SIGMETs** — severe turbulence, severe icing, volcanic ash, tropical cyclones, sandstorms
-- **Convective SIGMETs** — active thunderstorm areas
-- Filter by type: `AIRMET`, `SIGMET`, or both
-- Bounding box **intersection** filter — get only advisories that overlap your flight area
-- Global coverage (SIGMET), US FAA (AIRMET)
-
-### Winds Aloft
-- **9 standard altitude levels** — 3,000, 6,000, 9,000, 12,000, 18,000, 24,000, 30,000, 34,000, 39,000 ft
-- Wind direction and speed at each level
-- Temperature at altitude
-- **Forecast hours** — current or 6/12/24-hour forecast
-- **Level filter** — `low` (3K–12K), `high` (18K–45K), or `all`
-- Source: FAA FD (Winds and Temperatures Aloft) product
-- Coverage: USA airports
-
----
-
-## Endpoints
-
-```
-GET /v3/weather/pireps?bbox=39,-78,42,-71&hours=3
-GET /v3/weather/pireps?bbox=30,-100,48,-80&hours=6&type=UUA
-
-GET /v3/weather/airsigmet?bbox=38,-90,45,-80
-GET /v3/weather/airsigmet?bbox=38,-90,45,-80&type=SIGMET
-GET /v3/weather/airsigmet?bbox=38,-90,45,-80&type=AIRMET
-
-GET /v3/weather/winds-aloft?bbox=40,-80,42,-73&forecast_hour=12&level=low
-GET /v3/weather/winds-aloft?bbox=40,-80,42,-73&level=all
-```
-
----
-
-## Quick Start
-
-### Get Your Free API Key
-Sign up at [RapidAPI — SkyLink API](https://rapidapi.com/skylink-api-skylink-api-default/api/skylink-api) — 1,000 free requests/month, no credit card required.
-
-### Python — Get PIREPs (Turbulence Reports)
-
-```python
-import requests
-
-headers = {
-    "x-rapidapi-key": "YOUR_API_KEY",
-    "x-rapidapi-host": "skylink-api.p.rapidapi.com"
-}
-
-# Get all PIREPs from the last 3 hours over the NE United States
-params = {
-    "bbox": "39,-78,42,-71",  # lat_min,lon_min,lat_max,lon_max
-    "hours": 3
-}
-r = requests.get(
-    "https://skylink-api.p.rapidapi.com/v3/weather/pireps",
-    headers=headers,
-    params=params
-)
-
-reports = r.json()["reports"]
-print(f"{len(reports)} PIREPs in the last 3 hours")
-
-for rep in reports:
-    turb = rep.get("turbulence") or "Smooth"
-    icing = rep.get("icing") or "No icing"
-    print(f"  {rep['location']} FL{rep['altitude']} — "
-          f"Turb: {turb} | Icing: {icing}")
-```
-
-### Python — Get SIGMETs for a Region
-
-```python
-# Get all active SIGMETs intersecting the North Atlantic
-params = {
-    "bbox": "30,-70,60,-10",  # North Atlantic
-    "type": "SIGMET"
-}
-r = requests.get(
-    "https://skylink-api.p.rapidapi.com/v3/weather/airsigmet",
-    headers=headers,
-    params=params
-)
-
-for advisory in r.json()["reports"]:
-    print(f"[{advisory['bulletin_type']}] {advisory['observation']['type']}")
-    print(f"  Valid: {advisory['valid_from']} → {advisory['valid_to']}")
-    print(f"  {advisory['raw_text'][:100]}...")
-```
-
-### Python — Winds Aloft for Flight Planning
-
-```python
-# Get winds at all altitudes over the NE corridor
-params = {
-    "bbox": "40,-80,42,-73",
-    "forecast_hour": 12,
-    "level": "all"
-}
-r = requests.get(
-    "https://skylink-api.p.rapidapi.com/v3/weather/winds-aloft",
-    headers=headers,
-    params=params
-)
-
-for station in r.json()["stations"][:3]:
-    print(f"\nStation: {station['station']}")
-    for level in station["winds"]:
-        print(f"  FL{level['altitude_ft']//100:03d}: "
-              f"{level['wind_dir']}° @ {level['wind_speed_kt']}kt, "
-              f"Temp: {level['temp_c']}°C")
-```
-
-### JavaScript (Node.js)
-
-```javascript
-const axios = require('axios');
-
-const headers = {
-  'x-rapidapi-key': 'YOUR_API_KEY',
-  'x-rapidapi-host': 'skylink-api.p.rapidapi.com'
-};
-
-// Check for urgent PIREPs (UUA) over the Rockies
-const { data } = await axios.get(
-  'https://skylink-api.p.rapidapi.com/v3/weather/pireps',
-  { headers, params: { bbox: '35,-115,45,-100', hours: 6, type: 'UUA' } }
-);
-
-if (data.reports.length === 0) {
-  console.log('No urgent PIREPs — skies are smooth');
-} else {
-  data.reports.forEach(r => {
-    console.log(`URGENT: ${r.location} FL${r.altitude} — ${r.turbulence}`);
-  });
-}
-```
-
-### cURL
+Gunakan Python 3.8 atau lebih baru dan pasang dependensi:
 
 ```bash
-# PIREPs over the midwest
-curl "https://skylink-api.p.rapidapi.com/v3/weather/pireps?bbox=35,-100,45,-80&hours=3" \
-  -H "x-rapidapi-key: YOUR_API_KEY" \
-  -H "x-rapidapi-host: skylink-api.p.rapidapi.com"
-
-# Active AIRMETs/SIGMETs
-curl "https://skylink-api.p.rapidapi.com/v3/weather/airsigmet?bbox=25,-130,50,-60" \
-  -H "x-rapidapi-key: YOUR_API_KEY" \
-  -H "x-rapidapi-host: skylink-api.p.rapidapi.com"
+python3 -m pip install -r requirements.txt
 ```
 
----
+Tambahkan API key SkyLink Direct ke file `.env` pada root project:
 
-## Response Schema
+```env
+SKYLINK_API_KEY=your_api_key
+```
 
-### PIREP
+Script juga menerima `RAPIDAPI_KEY` untuk kompatibilitas, tetapi contoh di
+dokumentasi ini menggunakan autentikasi SkyLink Direct.
+
+## Autentikasi dan batas request
+
+Semua request SkyLink Direct harus menyertakan API key di header:
+
+```http
+x-api-key: YOUR_API_KEY
+```
+
+Base URL:
+
+```text
+https://data.skylinkapi.com/v3.1
+```
+
+Batas laju bergantung pada paket. Paket Free Trial dibatasi satu request per
+detik. Contoh Python menunggu minimal **1,2 detik** antara request SkyLink dan
+melakukan retry dengan exponential backoff untuk `429`, `500`, `502`, dan
+`504`. Request tetap dapat dihitung ke kuota bulanan, termasuk request yang
+berakhir dengan error setelah terautentikasi.
+
+## Endpoint METAR
+
+METAR adalah observasi cuaca aktual di stasiun/bandara.
+
+```http
+GET https://data.skylinkapi.com/v3.1/weather/metar/{icao}
+```
+
+### Parameter
+
+| Nama | Lokasi | Wajib | Tipe | Keterangan |
+|---|---|---:|---|---|
+| `icao` | Path | Ya | string | Kode ICAO stasiun, umumnya 4 huruf, misalnya `WIII`. |
+| `parsed` | Query | Tidak | boolean | Jika `true`, tambahkan hasil parsing terstruktur pada properti `parsed`. Default `false`. |
+
+Contoh request dengan METAR terurai:
+
+```bash
+curl --get "https://data.skylinkapi.com/v3.1/weather/metar/WIII" \
+  --data-urlencode "parsed=true" \
+  -H "x-api-key: YOUR_API_KEY"
+```
+
+### Contoh response
+
+Response dasar berisi laporan mentah dan metadata stasiun:
 
 ```json
 {
-  "reports": [
-    {
-      "type": "UA",
-      "location": "KJFK",
-      "time": "2026-03-29T14:22:00Z",
-      "altitude": 28000,
-      "aircraft_type": "B738",
-      "turbulence": "MOD",
-      "turbulence_type": "CAT",
-      "icing": null,
-      "sky_condition": "BKN 260",
-      "temperature_c": -42,
-      "wind_dir": 280,
-      "wind_speed_kt": 95,
-      "raw": "UA /OV KJFK/TM 1422/FL280/TP B738/TB MOD CAT/RM ZBW"
-    }
-  ]
+  "raw": "METAR WIII 090300Z 27005KT 6000 FEW020 31/24 Q1010 NOSIG",
+  "icao": "WIII",
+  "airport_name": "Soekarno-Hatta International Airport",
+  "timestamp": "2026-10-09T03:05:00Z"
 }
 ```
 
-### AIRMET/SIGMET
+Jika memakai `parsed=true`, response juga memiliki objek `parsed`. Contoh
+berikut menunjukkan bentuk datanya; nilai aktual, satuan, dan field yang
+tersedia mengikuti laporan sumber:
 
 ```json
 {
-  "reports": [
-    {
-      "bulletin_type": "AIRMET",
-      "observation": {
-        "type": "IFR",
-        "intensity": "MOD"
-      },
-      "valid_from": "2026-03-29T15:00:00Z",
-      "valid_to": "2026-03-29T21:00:00Z",
-      "raw_text": "AIRMET SIERRA FOR IFR AND MTN OBSCN...",
-      "area": {
-        "type": "Polygon",
-        "coordinates": [...]
+  "raw": "METAR WIII 090300Z 27005KT 6000 FEW020 31/24 Q1010 NOSIG",
+  "icao": "WIII",
+  "airport_name": "Soekarno-Hatta International Airport",
+  "timestamp": "2026-10-09T03:05:00Z",
+  "parsed": {
+    "time": "2026-10-09T03:00:00+00:00",
+    "wind": {
+      "direction": 270,
+      "speed": 5,
+      "gust": null,
+      "variable": []
+    },
+    "visibility": {
+      "value": 6000,
+      "repr": "6000"
+    },
+    "clouds": [
+      {
+        "type": "FEW",
+        "base": 20,
+        "repr": "FEW020"
       }
-    }
-  ]
+    ],
+    "temperature": 31,
+    "dewpoint": 24,
+    "altimeter": 1010,
+    "flight_rules": "MVFR",
+    "wx_codes": [],
+    "remarks": "NOSIG",
+    "density_altitude": 2000,
+    "pressure_altitude": 100,
+    "relative_humidity": 0.67
+  }
 }
 ```
 
----
+Field utama di `parsed`:
 
-## Use Cases
+| Field | Keterangan |
+|---|---|
+| `time` | Waktu observasi pada laporan, ISO 8601. Gunakan ini untuk menentukan umur data. |
+| `wind` | Arah dan kecepatan angin, gust jika ada, serta rentang arah variabel. |
+| `visibility` | Nilai hasil parsing dan token laporan pada `repr`. Pertahankan `repr` untuk interpretasi sesuai satuan yang tercantum di laporan. |
+| `clouds` | Lapisan awan. `base` dinyatakan dalam ratusan kaki AGL; misalnya `20` berarti 2.000 ft. |
+| `temperature`, `dewpoint` | Suhu dan titik embun dalam °C. |
+| `altimeter` | Nilai tekanan dari laporan. Untuk penggunaan operasional, baca bersama representasi mentah METAR. |
+| `flight_rules` | Kategori penerbangan, misalnya `VFR`, `MVFR`, `IFR`, atau `LIFR`. |
+| `wx_codes` | Kode fenomena cuaca beserta deskripsi jika tersedia. |
+| `remarks` | Bagian remarks METAR jika ada. |
+| `density_altitude`, `pressure_altitude` | Nilai perhitungan tambahan bila tersedia. |
+| `relative_humidity` | Kelembapan relatif bila tersedia. |
 
-- **Preflight go/no-go decision tools** — show pilots exactly where turbulence and icing are reported
-- **EFB (Electronic Flight Bag) backends** — weather overlay layer with PIREPs and SIGMETs
-- **Turbulence mapping overlays** — visualize on a map using bounding box queries
-- **UAV/drone BVLOS weather checks** — ensure airspace is clear before approving a drone flight
-- **Dispatch system weather integration** — alert dispatchers to active SIGMETs on planned routes
-- **Flight briefing automation** — combine with METAR/TAF and NOTAMs for a full briefing
+Field yang tidak tersedia dapat bernilai `null`, kosong, atau tidak ada,
+bergantung pada laporan dan hasil parsing. Simpan `raw` sebagai sumber utama
+jika aplikasi perlu menginterpretasikan ulang laporan.
 
----
+## Endpoint TAF
 
-## Related Repositories
+TAF adalah prakiraan cuaca untuk bandara dan area sekitarnya.
 
-- [metar-api](https://github.com/skylink-api/metar-api) — METAR current conditions and TAF forecasts
-- [notam-api](https://github.com/skylink-api/notam-api) — real-time NOTAMs and TFRs
-- [aviation-utilities-api](https://github.com/skylink-api/aviation-utilities-api) — AI-powered flight briefing that aggregates all weather sources
-- [flight-tracking-api](https://github.com/skylink-api/flight-tracking-api) — see which aircraft are actually flying through hazardous areas
+```http
+GET https://data.skylinkapi.com/v3.1/weather/taf/{icao}
+```
 
----
+### Parameter
 
-## GitHub Topics
+| Nama | Lokasi | Wajib | Tipe | Keterangan |
+|---|---|---:|---|---|
+| `icao` | Path | Ya | string | Kode ICAO stasiun, misalnya `WIII`. |
+| `parsed` | Query | Tidak | boolean | Jika `true`, tambahkan rentang validitas dan grup prakiraan terurai. Default `false`. |
 
-`aviation-weather` `sigmet` `airmet` `pirep` `winds-aloft` `turbulence` `icing` `aviation-api` `weather-api` `python` `faa` `rest-api`
+Contoh request TAF mentah (default):
 
----
+```bash
+curl "https://data.skylinkapi.com/v3.1/weather/taf/WIII" \
+  -H "x-api-key: YOUR_API_KEY"
+```
 
-## Part of SkyLink API — The All-In-One Aviation Data API
+Contoh request dengan grup prakiraan terurai:
 
-All features are included in a single SkyLink API subscription. No juggling 5 different providers. One key, one schema, one bill.
+```bash
+curl --get "https://data.skylinkapi.com/v3.1/weather/taf/WIII" \
+  --data-urlencode "parsed=true" \
+  -H "x-api-key: YOUR_API_KEY"
+```
 
-- **Website**: https://skylinkapi.com
-- **Full Docs**: https://skylinkapi.com/docs
-- **RapidAPI**: https://rapidapi.com/skylink-api-skylink-api-default/api/skylink-api
-- **Free Tier**: 1,000 requests/month — no credit card required
-- **Coverage**: PIREPs/Winds Aloft: USA (FAA) | AIRMETs: USA | SIGMETs: Global
+### Contoh response
+
+Default endpoint mengembalikan laporan mentah. Ini juga bentuk TAF yang
+disimpan script batch saat ini:
+
+```json
+{
+  "raw": "TAF WIII 082300Z 0900/1006 27005KT 6000 FEW020",
+  "icao": "WIII",
+  "airport_name": "Soekarno-Hatta International Airport",
+  "timestamp": "2026-10-09T03:05:00Z"
+}
+```
+
+Dengan `parsed=true`, response juga menyertakan struktur seperti:
+
+```json
+{
+  "raw": "TAF WIII 082300Z 0900/1006 27005KT 6000 FEW020",
+  "icao": "WIII",
+  "airport_name": "Soekarno-Hatta International Airport",
+  "timestamp": "2026-10-09T03:05:00Z",
+  "parsed": {
+    "start_time": "2026-10-09T00:00:00+00:00",
+    "end_time": "2026-10-10T06:00:00+00:00",
+    "forecast": [
+      {
+        "type": "FROM",
+        "start_time": "2026-10-09T00:00:00+00:00",
+        "end_time": "2026-10-09T06:00:00+00:00",
+        "wind": {
+          "direction": 270,
+          "speed": 5,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 6000,
+          "repr": "6000"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 20,
+            "repr": "FEW020"
+          }
+        ],
+        "wx_codes": [],
+        "flight_rules": "MVFR",
+        "probability": null,
+        "turbulence": [],
+        "icing": []
+      }
+    ]
+  }
+}
+```
+
+`parsed.forecast` berisi grup prakiraan berurutan waktu. Tipe grup dapat
+mencakup `FROM`, `TEMPO`, dan `BECMG`; tiap grup dapat memuat waktu, angin,
+visibilitas, awan, fenomena cuaca, kategori penerbangan, probabilitas,
+turbulensi, dan icing. Properti tertentu dapat `null` atau kosong.
+
+TAF tidak selalu tersedia untuk setiap bandara. `404` pada endpoint TAF dapat
+berarti stasiun tidak menerbitkan prakiraan; itu tidak selalu berarti kode
+bandaranya tidak valid.
+
+## Menemukan stasiun cuaca Indonesia
+
+Data direktori bandara tidak sama dengan daftar stasiun yang aktif menerbitkan
+cuaca. Mode batch memeriksa feed publik Aviation Weather Center (AWC) sebelum
+meminta data SkyLink, supaya tidak melakukan request untuk setiap lapangan
+terbang di direktori.
+
+Discovery memakai dua endpoint AWC berikut:
+
+```http
+GET https://aviationweather.gov/api/data/metar?bbox=-11,95,6,141&format=json
+GET https://aviationweather.gov/api/data/taf?bbox=-11,95,6,141&format=json
+```
+
+| Parameter | Tipe | Keterangan |
+|---|---|---|
+| `bbox` | string | Batas geografis Indonesia dalam urutan `lat_min,lon_min,lat_max,lon_max`. |
+| `format` | string | `json`. |
+
+Feed mengembalikan array laporan; mode batch menggunakan properti `icaoId`
+untuk menemukan stasiun yang saat ini memiliki METAR atau TAF. Daftar produk
+disimpan terpisah di
+[indonesia_weather_stations.json](./examples/indonesia_weather_stations.json)
+dan diperbarui pada setiap batch run. Feed ini hanya untuk discovery; payload
+weather yang disimpan berasal dari SkyLink API.
+
+AWC mendokumentasikan maksimum 100 request per menit. Script batch juga
+menerapkan jeda 1,2 detik antara request SkyLink.
+
+## Menjalankan contoh dan menyimpan JSON
+
+Ambil METAR dan TAF untuk satu bandara:
+
+```bash
+python3 examples/weather_briefing.py
+python3 examples/weather_briefing.py --icao WIII
+```
+
+Tanpa argumen tambahan, kode default adalah `WIII`. Hasil disimpan ke
+`weather_WIII.json`. Tentukan kode dan nama file sendiri:
+
+```bash
+python3 examples/weather_briefing.py --icao WAAA --output makassar.json
+```
+
+Ambil data dari stasiun Indonesia yang sedang memiliki laporan:
+
+```bash
+python3 examples/weather_briefing.py --indonesia --output weather_indonesia.json
+```
+
+Batch menyimpan progress ke file output setelah setiap stasiun. Tiap entri
+hanya memiliki properti `metar` dan/atau `taf` jika feed discovery menemukan
+produk itu untuk stasiun tersebut.
+
+Untuk memperbarui direktori bandara OurAirports
+[indonesia_airports.json](./examples/indonesia_airports.json) (bukan daftar
+stasiun laporan cuaca aktif):
+
+```bash
+python3 examples/weather_briefing.py --refresh-airport-list
+```
+
+## Format file hasil batch
+
+Output `weather_indonesia.json` berupa array. Contoh berikut meringkas field
+penting; response aktual menyertakan seluruh field dari endpoint:
+
+```json
+[
+  {
+    "icao": "WAAA",
+    "metar": {
+      "raw": "METAR WAAA 090230Z 23004KT 5000 HZ FEW020 32/20 Q1012 NOSIG",
+      "icao": "WAAA",
+      "airport_name": "Sultan Hasanuddin International Airport",
+      "timestamp": "2026-10-09T02:40:20Z",
+      "parsed": {
+        "wind": {
+          "direction": 230,
+          "speed": 4,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 5000,
+          "repr": "5000"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 20,
+            "repr": "FEW020"
+          }
+        ],
+        "temperature": 32,
+        "dewpoint": 20,
+        "altimeter": 1012,
+        "flight_rules": "MVFR"
+      }
+    },
+    "taf": {
+      "raw": "TAF WAAA 082300Z 0900/1006 14004KT 8000 FEW020",
+      "icao": "WAAA",
+      "airport_name": "Sultan Hasanuddin International Airport",
+      "timestamp": "2026-10-09T02:40:22Z"
+    }
+  }
+]
+```
+
+Satu objek output mengikuti pola:
+
+```json
+{
+  "icao": "CODE",
+  "metar": {},
+  "taf": {}
+}
+```
+
+Jika hanya satu produk yang tersedia, properti produk lainnya tidak
+disertakan. Jika produk terdeteksi saat discovery tetapi kemudian SkyLink
+mengembalikan `404`, produk tersebut disimpan sebagai objek berisi `error`.
+
+## Error dan penanganannya
+
+| HTTP status | Makna umum | Tindakan |
+|---:|---|---|
+| `401` | API key tidak ada atau tidak valid. | Periksa konfigurasi `SKYLINK_API_KEY`; jangan retry otomatis. |
+| `403` | Produk tidak termasuk dalam paket. | Periksa akses paket. |
+| `404` | Stasiun atau produk cuaca tidak tersedia. | Periksa ICAO dan ketersediaan METAR/TAF; TAF sering tidak diterbitkan di bandara kecil. |
+| `422` | Parameter atau format request tidak valid. | Perbaiki parameter; jangan retry request yang sama. |
+| `429` | Rate limit atau kuota tercapai. | Tunggu/backoff, lalu periksa rate limit dan kuota paket. |
+| `500`, `502`, `504` | Gangguan sementara di server atau sumber data. | Retry terbatas dengan exponential backoff. |
+
+Script Python menampilkan body response jika SkyLink mengembalikan HTTP error.
+Respons sukses dapat berbeda field berdasarkan ketersediaan data; client
+sebaiknya menangani nilai opsional dan mempertahankan `raw`.
+
+## Referensi
+
+- [SkyLink v3.1 Weather API](https://skylinkapi.com/docs/v31/weather/)
+- [Referensi METAR](https://skylinkapi.com/docs/v31/weather-metar/)
+- [Referensi TAF](https://skylinkapi.com/docs/v31/weather-taf/)
+- [SkyLink rate limits](https://skylinkapi.com/docs/rate-limits/)
+- [AWC API](https://aviationweather.gov/data/api/)
