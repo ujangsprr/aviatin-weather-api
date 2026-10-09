@@ -1,0 +1,1046 @@
+[
+  {
+    "icao": "WAAA",
+    "metar": {
+      "raw": "METAR WAAA 090230Z 23004KT 200V360 5000 HZ FEW020 32/20 Q1012 NOSIG",
+      "icao": "WAAA",
+      "airport_name": "Sultan Hasanuddin International Airport",
+      "timestamp": "2026-10-09T02:40:20.929715Z",
+      "parsed": {
+        "wind": {
+          "direction": 230,
+          "speed": 4,
+          "gust": null,
+          "variable": [
+            {
+              "repr": "200",
+              "value": 200,
+              "spoken": "two zero zero"
+            },
+            {
+              "repr": "360",
+              "value": 360,
+              "spoken": "three six zero"
+            }
+          ]
+        },
+        "visibility": {
+          "value": 5000,
+          "repr": "5000"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 20,
+            "repr": "FEW020"
+          }
+        ],
+        "temperature": 32,
+        "dewpoint": 20,
+        "altimeter": 1012,
+        "flight_rules": "MVFR",
+        "wx_codes": [
+          {
+            "repr": "HZ",
+            "value": "Haze"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 2134,
+        "pressure_altitude": 83,
+        "relative_humidity": 0.4910362512163233
+      }
+    },
+    "taf": {
+      "raw": "TAF WAAA 082300Z 0900/1006 14004KT 8000 FEW020 BECMG 0902/0904 29012KT BECMG 0910/0912 12004KT",
+      "icao": "WAAA",
+      "airport_name": "Sultan Hasanuddin International Airport",
+      "timestamp": "2026-10-09T02:40:22.870837Z"
+    }
+  },
+  {
+    "icao": "WABB",
+    "metar": {
+      "raw": "METAR WABB 090230Z 12004KT 9999 SCT015 32/26 Q1011 NOSIG",
+      "icao": "WABB",
+      "airport_name": "Frans Kaisiepo Airport",
+      "timestamp": "2026-10-09T02:40:23.810906Z",
+      "parsed": {
+        "wind": {
+          "direction": 120,
+          "speed": 4,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 9999,
+          "repr": "9999"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 15,
+            "repr": "SCT015"
+          }
+        ],
+        "temperature": 32,
+        "dewpoint": 26,
+        "altimeter": 1011,
+        "flight_rules": "VFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 2162,
+        "pressure_altitude": 111,
+        "relative_humidity": 0.706309775182324
+      }
+    },
+    "taf": {
+      "raw": "TAF WABB 082300Z 0900/1006 10005KT 9999 FEW015",
+      "icao": "WABB",
+      "airport_name": "Frans Kaisiepo Airport",
+      "timestamp": "2026-10-09T02:40:36.201302Z"
+    }
+  },
+  {
+    "icao": "WADD",
+    "metar": {
+      "raw": "METAR WADD 090230Z 09009KT 9999 SCT016 30/24 Q1013 NOSIG",
+      "icao": "WADD",
+      "airport_name": "Denpasar I Gusti Ngurah Rai International Airport",
+      "timestamp": "2026-10-09T02:40:37.129623Z",
+      "parsed": {
+        "wind": {
+          "direction": 90,
+          "speed": 9,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 9999,
+          "repr": "9999"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 16,
+            "repr": "SCT016"
+          }
+        ],
+        "temperature": 30,
+        "dewpoint": 24,
+        "altimeter": 1013,
+        "flight_rules": "VFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1823,
+        "pressure_altitude": 20,
+        "relative_humidity": 0.7026737234956854
+      }
+    },
+    "taf": {
+      "raw": "TAF WADD 082300Z 0900/1006 15008KT 9999 SCT016",
+      "icao": "WADD",
+      "airport_name": "Denpasar I Gusti Ngurah Rai International Airport",
+      "timestamp": "2026-10-09T02:40:38.348223Z"
+    }
+  },
+  {
+    "icao": "WADL",
+    "metar": {
+      "raw": "METAR WADL 090230Z 16005KT 120V230 8000 SCT016 30/19 Q1014 NOSIG",
+      "icao": "WADL",
+      "airport_name": "Lombok International Airport",
+      "timestamp": "2026-10-09T02:40:39.498648Z",
+      "parsed": {
+        "wind": {
+          "direction": 160,
+          "speed": 5,
+          "gust": null,
+          "variable": [
+            {
+              "repr": "120",
+              "value": 120,
+              "spoken": "one two zero"
+            },
+            {
+              "repr": "230",
+              "value": 230,
+              "spoken": "two three zero"
+            }
+          ]
+        },
+        "visibility": {
+          "value": 8000,
+          "repr": "8000"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 16,
+            "repr": "SCT016"
+          }
+        ],
+        "temperature": 30,
+        "dewpoint": 19,
+        "altimeter": 1014,
+        "flight_rules": "MVFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 2173,
+        "pressure_altitude": 296,
+        "relative_humidity": 0.5172458524069073
+      }
+    },
+    "taf": {
+      "raw": "TAF WADL 082300Z 0900/1000 13008KT 8000 SCT016",
+      "icao": "WADL",
+      "airport_name": "Lombok International Airport",
+      "timestamp": "2026-10-09T02:40:40.764961Z"
+    }
+  },
+  {
+    "icao": "WAHS",
+    "metar": {
+      "raw": "METAR WAHS 090230Z 33004KT 280V020 5000 HZ SCT017 30/23 Q1012 NOSIG",
+      "icao": "WAHS",
+      "airport_name": "Jenderal Ahmad Yani Airport",
+      "timestamp": "2026-10-09T02:40:41.914130Z",
+      "parsed": {
+        "wind": {
+          "direction": 330,
+          "speed": 4,
+          "gust": null,
+          "variable": [
+            {
+              "repr": "280",
+              "value": 280,
+              "spoken": "two eight zero"
+            },
+            {
+              "repr": "020",
+              "value": 20,
+              "spoken": "zero two zero"
+            }
+          ]
+        },
+        "visibility": {
+          "value": 5000,
+          "repr": "5000"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 17,
+            "repr": "SCT017"
+          }
+        ],
+        "temperature": 30,
+        "dewpoint": 23,
+        "altimeter": 1012,
+        "flight_rules": "MVFR",
+        "wx_codes": [
+          {
+            "repr": "HZ",
+            "value": "Haze"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1848,
+        "pressure_altitude": 46,
+        "relative_humidity": 0.661518194845885
+      }
+    },
+    "taf": {
+      "raw": "TAF WAHS 082300Z 0900/1000 14008KT 7000 SCT017 BECMG 0904/0906 34012KT",
+      "icao": "WAHS",
+      "airport_name": "Jenderal Ahmad Yani Airport",
+      "timestamp": "2026-10-09T02:40:43.163107Z"
+    }
+  },
+  {
+    "icao": "WAJJ",
+    "metar": {
+      "raw": "METAR WAJJ 090230Z VRB01KT 9999 FEW012 23/23 Q1011 NOSIG",
+      "icao": "WAJJ",
+      "airport_name": "Dortheys Hiyo Eluay International Airport",
+      "timestamp": "2026-10-09T02:40:45.532284Z",
+      "parsed": {
+        "wind": {
+          "direction": null,
+          "speed": 1,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 9999,
+          "repr": "9999"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 12,
+            "repr": "FEW012"
+          }
+        ],
+        "temperature": 23,
+        "dewpoint": 23,
+        "altimeter": 1011,
+        "flight_rules": "VFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1383,
+        "pressure_altitude": 354,
+        "relative_humidity": 1.0
+      }
+    },
+    "taf": {
+      "raw": "TAF WAJJ 082300Z 0900/1000 21002KT 3000 RA BKN010 BECMG 0901/0902 9000 NSW SCT012",
+      "icao": "WAJJ",
+      "airport_name": "Dortheys Hiyo Eluay International Airport",
+      "timestamp": "2026-10-09T02:40:46.463831Z"
+    }
+  },
+  {
+    "icao": "WALL",
+    "metar": {
+      "raw": "METAR WALL 090230Z VRB03KT 4500 FU BKN020 29/25 Q1012",
+      "icao": "WALL",
+      "airport_name": "Sultan Aji Muhammad Sulaiman Sepinggan International Airport",
+      "timestamp": "2026-10-09T02:40:47.714947Z",
+      "parsed": {
+        "wind": {
+          "direction": null,
+          "speed": 3,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 4500,
+          "repr": "4500"
+        },
+        "clouds": [
+          {
+            "type": "BKN",
+            "base": 20,
+            "repr": "BKN020"
+          }
+        ],
+        "temperature": 29,
+        "dewpoint": 25,
+        "altimeter": 1012,
+        "flight_rules": "IFR",
+        "wx_codes": [
+          {
+            "repr": "FU",
+            "value": "Smoke"
+          }
+        ],
+        "remarks": "",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1731,
+        "pressure_altitude": 48,
+        "relative_humidity": 0.7903924635532295
+      }
+    },
+    "taf": {
+      "raw": "TAF WALL 082300Z 0900/1000 25007KT 2000 BR FEW017CB BECMG 0900/0902 9999 FEW020",
+      "icao": "WALL",
+      "airport_name": "Sultan Aji Muhammad Sulaiman Sepinggan International Airport",
+      "timestamp": "2026-10-09T02:40:48.866522Z"
+    }
+  },
+  {
+    "icao": "WAMM",
+    "metar": {
+      "raw": "METAR WAMM 090230Z VRB04KT 5000 FU FEW020 34/21 Q1013 NOSIG",
+      "icao": "WAMM",
+      "airport_name": "Sam Ratulangi International Airport",
+      "timestamp": "2026-10-09T02:40:50.087507Z",
+      "parsed": {
+        "wind": {
+          "direction": null,
+          "speed": 4,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 5000,
+          "repr": "5000"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 20,
+            "repr": "FEW020"
+          }
+        ],
+        "temperature": 34,
+        "dewpoint": 21,
+        "altimeter": 1013,
+        "flight_rules": "MVFR",
+        "wx_codes": [
+          {
+            "repr": "FU",
+            "value": "Smoke"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 2613,
+        "pressure_altitude": 270,
+        "relative_humidity": 0.4667031764515091
+      }
+    },
+    "taf": {
+      "raw": "TAF WAMM 082300Z 0900/1000 12010KT 6000 FEW020 BECMG 0902/0904 33010KT BECMG 0908/0910 15010KT",
+      "icao": "WAMM",
+      "airport_name": "Sam Ratulangi International Airport",
+      "timestamp": "2026-10-09T02:40:51.282149Z"
+    }
+  },
+  {
+    "icao": "WAOO",
+    "metar": {
+      "raw": "METAR WAOO 090230Z 11003KT 1500 FU NSC 31/22 Q1011 NOSIG",
+      "icao": "WAOO",
+      "airport_name": "Syamsudin Noor International Airport",
+      "timestamp": "2026-10-09T02:40:52.520792Z",
+      "parsed": {
+        "wind": {
+          "direction": 110,
+          "speed": 3,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 1500,
+          "repr": "1500"
+        },
+        "clouds": [],
+        "temperature": 31,
+        "dewpoint": 22,
+        "altimeter": 1011,
+        "flight_rules": "LIFR",
+        "wx_codes": [
+          {
+            "repr": "FU",
+            "value": "Smoke"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 2067,
+        "pressure_altitude": 131,
+        "relative_humidity": 0.5878177461113542
+      }
+    },
+    "taf": {
+      "raw": "TAF WAOO 082300Z 0900/1000 18008KT 8000 FEW020 TEMPO 0900/0902 3000 FU",
+      "icao": "WAOO",
+      "airport_name": "Syamsudin Noor International Airport",
+      "timestamp": "2026-10-09T02:40:53.682143Z"
+    }
+  },
+  {
+    "icao": "WAPP",
+    "metar": {
+      "raw": "METAR WAPP 090230Z 16005KT 3000 FU FEW016 30/23 Q1012 NOSIG",
+      "icao": "WAPP",
+      "airport_name": "Pattimura International Airport",
+      "timestamp": "2026-10-09T02:40:54.894784Z",
+      "parsed": {
+        "wind": {
+          "direction": 160,
+          "speed": 5,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 3000,
+          "repr": "3000"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 16,
+            "repr": "FEW016"
+          }
+        ],
+        "temperature": 30,
+        "dewpoint": 23,
+        "altimeter": 1012,
+        "flight_rules": "IFR",
+        "wx_codes": [
+          {
+            "repr": "FU",
+            "value": "Smoke"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1877,
+        "pressure_altitude": 69,
+        "relative_humidity": 0.661518194845885
+      }
+    },
+    "taf": {
+      "raw": "TAF WAPP 082300Z 0900/1000 17007KT 3000 FU SCT017",
+      "icao": "WAPP",
+      "airport_name": "Pattimura International Airport",
+      "timestamp": "2026-10-09T02:40:56.094896Z"
+    }
+  },
+  {
+    "icao": "WAQQ",
+    "metar": {
+      "raw": "METAR WAQQ 090200Z 21005KT 180V240 9999 FEW015 29/25 Q1013 NOSIG",
+      "icao": "WAQQ",
+      "airport_name": "Juwata International Airport / Suharnoko Harbani AFB",
+      "timestamp": "2026-10-09T02:40:57.556254Z",
+      "parsed": {
+        "wind": {
+          "direction": 210,
+          "speed": 5,
+          "gust": null,
+          "variable": [
+            {
+              "repr": "180",
+              "value": 180,
+              "spoken": "one eight zero"
+            },
+            {
+              "repr": "240",
+              "value": 240,
+              "spoken": "two four zero"
+            }
+          ]
+        },
+        "visibility": {
+          "value": 9999,
+          "repr": "9999"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 15,
+            "repr": "FEW015"
+          }
+        ],
+        "temperature": 29,
+        "dewpoint": 25,
+        "altimeter": 1013,
+        "flight_rules": "VFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:00:00+00:00",
+        "density_altitude": 1715,
+        "pressure_altitude": 29,
+        "relative_humidity": 0.7903924635532295
+      }
+    },
+    "taf": {
+      "raw": "TAF WAQQ 082300Z 0900/1000 22004KT 9999 FEW015",
+      "icao": "WAQQ",
+      "airport_name": "Juwata International Airport / Suharnoko Harbani AFB",
+      "timestamp": "2026-10-09T02:41:00.367107Z"
+    }
+  },
+  {
+    "icao": "WARR",
+    "metar": {
+      "raw": "METAR WARR 090230Z 07006KT 9000 FEW020 31/23 Q1012 NOSIG",
+      "icao": "WARR",
+      "airport_name": "Juanda International Airport",
+      "timestamp": "2026-10-09T02:41:01.467933Z",
+      "parsed": {
+        "wind": {
+          "direction": 70,
+          "speed": 6,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 9000,
+          "repr": "9000"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 20,
+            "repr": "FEW020"
+          }
+        ],
+        "temperature": 31,
+        "dewpoint": 23,
+        "altimeter": 1012,
+        "flight_rules": "VFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1967,
+        "pressure_altitude": 45,
+        "relative_humidity": 0.6246720377647681
+      }
+    },
+    "taf": {
+      "raw": "TAF WARR 082300Z 0900/1000 24005KT 9999 FEW020 BECMG 0901/0903 10011KT",
+      "icao": "WARR",
+      "airport_name": "Juanda International Airport",
+      "timestamp": "2026-10-09T02:41:02.640337Z"
+    }
+  },
+  {
+    "icao": "WATT",
+    "metar": {
+      "raw": "METAR WATT 090230Z 31006KT 5000 HZ SCT018 31/21 Q1012 NOSIG",
+      "icao": "WATT",
+      "airport_name": "El Tari Airport",
+      "timestamp": "2026-10-09T02:41:05.375130Z",
+      "parsed": {
+        "wind": {
+          "direction": 310,
+          "speed": 6,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 5000,
+          "repr": "5000"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 18,
+            "repr": "SCT018"
+          }
+        ],
+        "temperature": 31,
+        "dewpoint": 21,
+        "altimeter": 1012,
+        "flight_rules": "MVFR",
+        "wx_codes": [
+          {
+            "repr": "HZ",
+            "value": "Haze"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 2371,
+        "pressure_altitude": 371,
+        "relative_humidity": 0.5528834978810405
+      }
+    },
+    "taf": {
+      "raw": "TAF WATT 082300Z 0900/1000 12008KT 8000 FEW018 BECMG 0900/0901 30012KT BECMG 0908/0909 12007KT",
+      "icao": "WATT",
+      "airport_name": "El Tari Airport",
+      "timestamp": "2026-10-09T02:41:06.472862Z"
+    }
+  },
+  {
+    "icao": "WIBB",
+    "metar": {
+      "raw": "METAR WIBB 090230Z 00000KT 2000 FU SCT012 29/25 Q1011 NOSIG",
+      "icao": "WIBB",
+      "airport_name": "Sultan Syarif Kasim II International Airport / Roesmin Nurjadin AFB",
+      "timestamp": "2026-10-09T02:41:07.628277Z",
+      "parsed": {
+        "wind": {
+          "direction": 0,
+          "speed": 0,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 2000,
+          "repr": "2000"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 12,
+            "repr": "SCT012"
+          }
+        ],
+        "temperature": 29,
+        "dewpoint": 25,
+        "altimeter": 1011,
+        "flight_rules": "IFR",
+        "wx_codes": [
+          {
+            "repr": "FU",
+            "value": "Smoke"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1871,
+        "pressure_altitude": 167,
+        "relative_humidity": 0.7903924635532295
+      }
+    },
+    "taf": {
+      "raw": "TAF COR WIBB 082300Z 0900/1000 17008KT 1500 FU SCT012 TEMPO 0910/0914 TSRA FEW015CB BECMG 0915/0917 3000 FU FEW013",
+      "icao": "WIBB",
+      "airport_name": "Sultan Syarif Kasim II International Airport / Roesmin Nurjadin AFB",
+      "timestamp": "2026-10-09T02:41:08.810428Z"
+    }
+  },
+  {
+    "icao": "WIDN",
+    "metar": {
+      "raw": "METAR WIDN 090230Z VRB01KT 4500 FU SCT017 31/25 Q1013 NOSIG",
+      "icao": "WIDN",
+      "airport_name": "Raja Haji Fisabilillah International Airport",
+      "timestamp": "2026-10-09T02:41:10.011937Z",
+      "parsed": {
+        "wind": {
+          "direction": null,
+          "speed": 1,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 4500,
+          "repr": "4500"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 17,
+            "repr": "SCT017"
+          }
+        ],
+        "temperature": 31,
+        "dewpoint": 25,
+        "altimeter": 1013,
+        "flight_rules": "IFR",
+        "wx_codes": [
+          {
+            "repr": "FU",
+            "value": "Smoke"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1990,
+        "pressure_altitude": 58,
+        "relative_humidity": 0.7044994495098235
+      }
+    },
+    "taf": {
+      "raw": "TAF WIDN 082300Z 0900/1000 17007KT 3000 FU SCT017",
+      "icao": "WIDN",
+      "airport_name": "Raja Haji Fisabilillah International Airport",
+      "timestamp": "2026-10-09T02:41:11.224902Z"
+    }
+  },
+  {
+    "icao": "WIEE",
+    "metar": {
+      "raw": "METAR WIEE 090230Z 22004KT 190V250 9000 FEW020 29/26 Q1012 NOSIG",
+      "icao": "WIEE",
+      "airport_name": "Minangkabau International Airport",
+      "timestamp": "2026-10-09T02:41:12.430011Z",
+      "parsed": {
+        "wind": {
+          "direction": 220,
+          "speed": 4,
+          "gust": null,
+          "variable": [
+            {
+              "repr": "190",
+              "value": 190,
+              "spoken": "one nine zero"
+            },
+            {
+              "repr": "250",
+              "value": 250,
+              "spoken": "two five zero"
+            }
+          ]
+        },
+        "visibility": {
+          "value": 9000,
+          "repr": "9000"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 20,
+            "repr": "FEW020"
+          }
+        ],
+        "temperature": 29,
+        "dewpoint": 26,
+        "altimeter": 1012,
+        "flight_rules": "VFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1738,
+        "pressure_altitude": 54,
+        "relative_humidity": 0.8388153889009302
+      }
+    },
+    "taf": {
+      "raw": "TAF WIEE 082300Z 0900/1000 24004KT 2000 FU SCT020 BECMG 0903/0905 6000 NSW TEMPO 0909/0912 2000 RA BKN015",
+      "icao": "WIEE",
+      "airport_name": "Minangkabau International Airport",
+      "timestamp": "2026-10-09T02:41:13.629696Z"
+    }
+  },
+  {
+    "icao": "WIII",
+    "metar": {
+      "raw": "METAR WIII 090230Z VRB02KT 5000 HZ FEW018 31/23 Q1012 NOSIG",
+      "icao": "WIII",
+      "airport_name": "Soekarno-Hatta International Airport",
+      "timestamp": "2026-10-09T02:41:14.837209Z",
+      "parsed": {
+        "wind": {
+          "direction": null,
+          "speed": 2,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 5000,
+          "repr": "5000"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 18,
+            "repr": "FEW018"
+          }
+        ],
+        "temperature": 31,
+        "dewpoint": 23,
+        "altimeter": 1012,
+        "flight_rules": "MVFR",
+        "wx_codes": [
+          {
+            "repr": "HZ",
+            "value": "Haze"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1998,
+        "pressure_altitude": 70,
+        "relative_humidity": 0.6246720377647681
+      }
+    },
+    "taf": {
+      "raw": "TAF WIII 082300Z 0900/1006 23005KT 4000 HZ SCT020 BECMG 0901/0903 01013KT 8000 NSW BECMG 0912/0914 22005KT",
+      "icao": "WIII",
+      "airport_name": "Soekarno-Hatta International Airport",
+      "timestamp": "2026-10-09T02:41:16.032165Z"
+    }
+  },
+  {
+    "icao": "WILL",
+    "metar": {
+      "raw": "METAR WILL 090230Z 12005KT 9999 FEW020 31/19 Q1012 NOSIG",
+      "icao": "WILL",
+      "airport_name": "Radin Inten II International Airport",
+      "timestamp": "2026-10-09T02:41:17.281336Z",
+      "parsed": {
+        "wind": {
+          "direction": 120,
+          "speed": 5,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 9999,
+          "repr": "9999"
+        },
+        "clouds": [
+          {
+            "type": "FEW",
+            "base": 20,
+            "repr": "FEW020"
+          }
+        ],
+        "temperature": 31,
+        "dewpoint": 19,
+        "altimeter": 1012,
+        "flight_rules": "VFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 2306,
+        "pressure_altitude": 318,
+        "relative_humidity": 0.4884355761728859
+      }
+    },
+    "taf": {
+      "raw": "TAF COR WILL 082300Z 0900/1000 11008KT 9999 FEW018 TEMPO 0900/0901 2000 BR",
+      "icao": "WILL",
+      "airport_name": "Radin Inten II International Airport",
+      "timestamp": "2026-10-09T02:41:18.446947Z"
+    }
+  },
+  {
+    "icao": "WIMM",
+    "metar": {
+      "raw": "METAR WIMM 090230Z 33007KT 290V360 7000 SCT017 30/26 Q1012 NOSIG",
+      "icao": "WIMM",
+      "airport_name": "Kualanamu International Airport",
+      "timestamp": "2026-10-09T02:41:19.753079Z",
+      "parsed": {
+        "wind": {
+          "direction": 330,
+          "speed": 7,
+          "gust": null,
+          "variable": [
+            {
+              "repr": "290",
+              "value": 290,
+              "spoken": "two nine zero"
+            },
+            {
+              "repr": "360",
+              "value": 360,
+              "spoken": "three six zero"
+            }
+          ]
+        },
+        "visibility": {
+          "value": 7000,
+          "repr": "7000"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 17,
+            "repr": "SCT017"
+          }
+        ],
+        "temperature": 30,
+        "dewpoint": 26,
+        "altimeter": 1012,
+        "flight_rules": "MVFR",
+        "wx_codes": [],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1865,
+        "pressure_altitude": 59,
+        "relative_humidity": 0.7917607793408513
+      }
+    },
+    "taf": {
+      "raw": "TAF COR WIMM 082300Z 0900/1000 VRB04KT 3000 BR SCT017 TEMPO 0901/0904 -TSRA FEW016CB BECMG 0904/0906 36010KT 9999 NSW",
+      "icao": "WIMM",
+      "airport_name": "Kualanamu International Airport",
+      "timestamp": "2026-10-09T02:41:20.868386Z"
+    }
+  },
+  {
+    "icao": "WIOO",
+    "metar": {
+      "raw": "METAR WIOO 090230Z 11004KT 2800 FU VV008 29/26 Q1012 NOSIG",
+      "icao": "WIOO",
+      "airport_name": "Supadio International Airport",
+      "timestamp": "2026-10-09T02:41:22.166945Z",
+      "parsed": {
+        "wind": {
+          "direction": 110,
+          "speed": 4,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 2800,
+          "repr": "2800"
+        },
+        "clouds": [
+          {
+            "type": "VV",
+            "base": 8,
+            "repr": "VV008"
+          }
+        ],
+        "temperature": 29,
+        "dewpoint": 26,
+        "altimeter": 1012,
+        "flight_rules": "IFR",
+        "wx_codes": [
+          {
+            "repr": "FU",
+            "value": "Smoke"
+          }
+        ],
+        "remarks": "NOSIG",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1728,
+        "pressure_altitude": 46,
+        "relative_humidity": 0.8388153889009302
+      }
+    },
+    "taf": {
+      "raw": "TAF WIOO 082300Z 0900/1000 20005KT 1500 FU SCT012",
+      "icao": "WIOO",
+      "airport_name": "Supadio International Airport",
+      "timestamp": "2026-10-09T02:41:23.359639Z"
+    }
+  },
+  {
+    "icao": "WIPP",
+    "metar": {
+      "raw": "METAR WIPP 090230Z 10005KT 0700 R11/0700N R29/0800U FU SCT012 29/24 Q1012 TEMPO TL0330 1000",
+      "icao": "WIPP",
+      "airport_name": "Sultan Mahmud Badaruddin II Airport",
+      "timestamp": "2026-10-09T02:41:24.473373Z",
+      "parsed": {
+        "wind": {
+          "direction": 100,
+          "speed": 5,
+          "gust": null,
+          "variable": []
+        },
+        "visibility": {
+          "value": 700,
+          "repr": "0700"
+        },
+        "clouds": [
+          {
+            "type": "SCT",
+            "base": 12,
+            "repr": "SCT012"
+          }
+        ],
+        "temperature": 29,
+        "dewpoint": 24,
+        "altimeter": 1012,
+        "flight_rules": "LIFR",
+        "wx_codes": [
+          {
+            "repr": "FU",
+            "value": "Smoke"
+          }
+        ],
+        "remarks": "TEMPO TL0330 1000",
+        "time": "2026-10-09T02:30:00+00:00",
+        "density_altitude": 1777,
+        "pressure_altitude": 85,
+        "relative_humidity": 0.7444338593472521
+      }
+    },
+    "taf": {
+      "raw": "TAF WIPP 082300Z 0900/1000 10009KT 2000 FU SCT015 TEMPO 0900/0902 0500 TEMPO 0921/1000 0800",
+      "icao": "WIPP",
+      "airport_name": "Sultan Mahmud Badaruddin II Airport",
+      "timestamp": "2026-10-09T02:41:28.346764Z"
+    }
+  }
+]
