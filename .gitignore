@@ -8,5 +8,4 @@ venv/
 node_modules/
 package-lock.json
 *.log
-weather_indonesia.json
 .DS_Store

@@ -4,7 +4,7 @@ SkyLink Direct API — Airport METAR and TAF
 Usage:
   python3 examples/weather_briefing.py
   python3 examples/weather_briefing.py --icao WSSS
-  python3 examples/weather_briefing.py --indonesia --output weather_indonesia.json
+  python3 examples/weather_briefing.py --indonesia
 
 Set SKYLINK_API_KEY in the project .env file.
 """
@@ -16,7 +16,7 @@ import json
 import os
 import time
 from pathlib import Path
-from typing import List
+from typing import Any, List
 
 import requests
 from dotenv import load_dotenv
@@ -26,6 +26,7 @@ API_BASE_URL = "https://data.skylinkapi.com/v3.1"
 AVIATION_WEATHER_API_URL = "https://aviationweather.gov/api/data"
 AIRPORTS_CSV_URL = "https://ourairports.com/data/airports.csv"
 INDONESIA_BBOX = "-11,95,6,141"
+DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parents[1] / "output"
 DEFAULT_AIRPORT_LIST = Path(__file__).with_name("indonesia_airports.json")
 DEFAULT_WEATHER_STATION_LIST = Path(__file__).with_name("indonesia_weather_stations.json")
 MIN_REQUEST_INTERVAL_SECONDS = 1.2
@@ -37,6 +38,14 @@ load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 def get_headers(api_key: str) -> dict:
     return {"x-api-key": api_key}
+
+
+def write_json(output_path: Path, data: Any) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
 
 
 def fetch_weather(api_key: str, icao: str, product: str):
@@ -105,7 +114,7 @@ def write_indonesian_airport_list(output_path: Path) -> None:
     airports = get_indonesian_airports()
     if not airports:
         raise RuntimeError("No ICAO-coded Indonesian airports were found in the airport dataset.")
-    output_path.write_text(json.dumps(airports, indent=2) + "\n", encoding="utf-8")
+    write_json(output_path, airports)
     print(f"Saved {len(airports)} ICAO codes to {output_path}")
 
 
@@ -187,10 +196,7 @@ def read_weather_station_list(input_path: Path) -> dict:
 
 def fetch_indonesia_weather(api_key: str, output_path: Path, station_list_path: Path) -> None:
     station_lists = get_current_indonesian_weather_stations()
-    station_list_path.write_text(
-        json.dumps(station_lists, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    write_json(station_list_path, station_lists)
     station_lists = read_weather_station_list(station_list_path)
     airports = sorted(set(station_lists["metar"]) | set(station_lists["taf"]))
 
@@ -220,10 +226,7 @@ def fetch_indonesia_weather(api_key: str, output_path: Path, station_list_path: 
                 airport_result[product] = {"error": str(exc)}
                 print(f"  {product.upper()} unavailable (404)", flush=True)
         results.append(airport_result)
-        output_path.write_text(
-            json.dumps(results, indent=2, ensure_ascii=False) + "\n",
-            encoding="utf-8",
-        )
+        write_json(output_path, results)
 
     print(f"Saved weather data to {output_path}. Station list saved to {station_list_path}.")
 
@@ -256,7 +259,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output",
         type=Path,
-        help="Output JSON file (default: weather_<ICAO>.json or weather_indonesia.json)",
+        help="Output JSON file (default: output/weather_<ICAO>.json or output/weather_indonesia.json)",
     )
     args = parser.parse_args()
 
@@ -270,7 +273,7 @@ if __name__ == "__main__":
     if args.indonesia:
         fetch_indonesia_weather(
             args.key,
-            args.output or Path("weather_indonesia.json"),
+            args.output or DEFAULT_OUTPUT_DIR / "weather_indonesia.json",
             DEFAULT_WEATHER_STATION_LIST,
         )
     else:
@@ -284,9 +287,6 @@ if __name__ == "__main__":
             data = fetch_weather(args.key, icao, product)
             results[product] = data
             print(json.dumps(data, indent=2, ensure_ascii=False))
-        output_path = args.output or Path(f"weather_{icao}.json")
-        output_path.write_text(
-            json.dumps(results, indent=2, ensure_ascii=False) + "\n",
-            encoding="utf-8",
-        )
+        output_path = args.output or DEFAULT_OUTPUT_DIR / f"weather_{icao}.json"
+        write_json(output_path, results)
         print(f"\nSaved weather data to {output_path}")

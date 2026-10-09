@@ -287,21 +287,22 @@ python3 examples/weather_briefing.py --icao WIII
 ```
 
 Tanpa argumen tambahan, kode default adalah `WIII`. Hasil disimpan ke
-`weather_WIII.json`. Tentukan kode dan nama file sendiri:
+`output/weather_WIII.json`. Script membuat folder `output/` jika belum ada.
+Tentukan kode dan nama file sendiri:
 
 ```bash
-python3 examples/weather_briefing.py --icao WAAA --output makassar.json
+python3 examples/weather_briefing.py --icao WAAA --output output/makassar.json
 ```
 
 Ambil data dari stasiun Indonesia yang sedang memiliki laporan:
 
 ```bash
-python3 examples/weather_briefing.py --indonesia --output weather_indonesia.json
+python3 examples/weather_briefing.py --indonesia
 ```
 
-Batch menyimpan progress ke file output setelah setiap stasiun. Tiap entri
-hanya memiliki properti `metar` dan/atau `taf` jika feed discovery menemukan
-produk itu untuk stasiun tersebut.
+Hasil batch disimpan ke `output/weather_indonesia.json`. Batch menyimpan
+progress setelah setiap stasiun. Tiap entri hanya memiliki properti `metar`
+dan/atau `taf` jika feed discovery menemukan produk itu untuk stasiun tersebut.
 
 Untuk memperbarui direktori bandara OurAirports
 [indonesia_airports.json](./examples/indonesia_airports.json) (bukan daftar
@@ -313,8 +314,8 @@ python3 examples/weather_briefing.py --refresh-airport-list
 
 ## Format file hasil batch
 
-Output `weather_indonesia.json` berupa array. Contoh berikut meringkas field
-penting; response aktual menyertakan seluruh field dari endpoint:
+Output `output/weather_indonesia.json` berupa array. Contoh berikut meringkas
+field penting; response aktual menyertakan seluruh field dari endpoint:
 
 ```json
 [
